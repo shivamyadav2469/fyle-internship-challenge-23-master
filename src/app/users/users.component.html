@@ -19,7 +19,7 @@
     </div>
 
     <div class="ml-8 mt-7">
-      <div class="grid grid-cols-2 gap-5" [ngStyle]="{'height': !fullHeight ? '400px' : 'auto', 'overflow': 'hidden'}">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 gap-5" [ngStyle]="{'height': !fullHeight ? '400px' : 'auto', 'overflow': 'hidden'}">
         <ng-container *ngFor="let data of details">
             <div class="border border-x-gray-700 border-y-slate-800 p-4" (click)="goToRepo(details[0]?.owner?.login, data.name)" style="cursor: pointer;"> 
               <p class="text-3xl font-bold text-sky-800 font-serif">{{ data.name }}</p>
