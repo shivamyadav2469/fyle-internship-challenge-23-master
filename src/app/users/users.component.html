@@ -28,10 +28,11 @@
             </div>
         </ng-container>
       </div>
-      <button class="bg-sky-700 text-bold text-white text-center rounded-sm mt-8 px-2 py-1 flex items-center">
-        Show {{fullHeight ? 'Less' : 'More'}}
-      </button>
-      
+      <div class="flex justify-center items-center mt-8">
+        <button class="bg-sky-700 text-bold text-white rounded-sm px-2 py-1" (click)="expand()">
+          Show {{fullHeight ? 'Less' : 'More'}}
+        </button>
+      </div>      
     </div>
 </div>  
 
