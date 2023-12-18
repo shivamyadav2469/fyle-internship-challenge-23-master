@@ -1,28 +1,59 @@
-<div class=" mt-6 width:10/12">
-        <h1 class="text-2xl font-bold mb-4 space-x-6 text-center">Search Users / Repositories / Issues From Github</h1>
+
+<nav style="background: rgb(37, 33, 41); background: linear-gradient(90deg, rgba(37, 33, 41, 1) 57%, rgba(25, 52, 93, 1) 98%);" class="p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="mx-auto md:ml-20 flex items-center"> 
+        <img src="https://static-00.iconduck.com/assets.00/github-icon-2048x1988-jzvzcf2t.png" height="50px" width="50px" alt="Logo" >
+      </div>
+      <div class="hidden font-extrabold text-3xl antialiased font-serif tracking-wide mr-[420px]  lg:flex items-center text-center text-white mx-auto  ">
+        <h1>Github</h1>
+    </div>
+      <div class="relative">
+        <div class="md:space-x-4 md:justify-center sm:flex hidden">
+          <a href="#" class="text-white">Home</a>
+          <a href="#" class="text-white">About</a>
+          <a href="#" class="text-white">Contact</a>
+        </div>
+      </div>
+    </div>
+</nav>
+
+  
+  <hr>
+ <div class=" width:10/12"  style="background: rgb(37, 33, 41); background: linear-gradient(90deg, rgba(37, 33, 41, 1) 57%, rgba(25, 52, 93, 1) 98%);" >
+        <h1 class="text-2xl font-bold mb-4  space-x-6 text-center text-white">Search Users / Repositories / Issues From Github</h1>
+        
         <div class="flex justify-center">
             <form (submit)="repos(key.value)" class="w-full md:w-[500px] flex flex-col md:flex-row items-center md:items-start">
-                <input required type="text" #key name="keyword" id="keyword" placeholder="Search Users" class="w-full md:w-[400px] p-2 mb-4 md:mr-2 border border-gray-300 rounded">
-                <button type="submit" class="bg-gray-500 text-white h-[40px] w-full md:w-[60px]  sm:w-[100px] rounded md:ml-1 md:mt-0">Search</button>
+                <input required type="text" #key name="keyword" id="keyword" placeholder="Search Users" class="w-[320px] md:w-[400px] p-2 mb-4 md:mr-2 border border-gray-300 rounded">
+                <button type="submit" class="bg-gray-500 text-white h-[40px] w-[140px] md:w-[60px]  sm:w-[100px] rounded md:ml-1 md:mt-0">Search</button>
               </form>
         </div>
     
         <div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-5">
         
-            <div *ngFor="let data of users" class="border border-black ml-16 mt-8 hover:drop-shadow-2xl cursor-pointer hover:scale-110  p-4 mr-4" (click)="repos(data.login)"
-            style="height: 400px;">
-            <img src="../../assets/download.png" *ngIf="!loaded" alt="user_img" class=" max-w-full rounded-lg" style="width: 400px;height: 310px;">
+            <div *ngFor="let data of users" class="border border-white ml-16 mt-8 hover:drop-shadow-2xl cursor-pointer hover:scale-110  p-4 mr-4" (click)="repos(data.login)"
+            style="height: 400px; margin-left: 2rem;">
+            <img src="../../assets/download.png" *ngIf="!loaded" alt="user_img" class=" max-w-full rounded-lg h-auto " style="width: 400px; height: 310px;">
             <img src="{{data.avatar_url}}" *ngIf="loaded" alt="user_img" class="w-full max-w-full rounded-lg" style="max-height: 300px;">
-            <p class="font-bold font-sans  text-2xl">
+            <p class="font-bold font-sans  text-2xl text-white">
                     <app-profile class="font-serif"
                     [userId] = "data.login"
                     ></app-profile>
                 </p>
                
-                <p><span class=" underline decoration-sky-500 font-bold text-sm">Github.com/{{data.login}}</span></p>
+                <p><span class=" underline decoration-sky-500 font-bold text-sm text-white">Github.com/{{data.login}}</span></p>
             </div>
         </div>
 </div>
 </div>
+<hr>
+
+<!-- footer -->
+<footer class="bg-gray-800 text-white p-4">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2023 Is this Clone of Github</p>
+      <p class="mt-2">Designed with <span class="text-red-500">&#10084;</span> by Shivam kumar yadav</p>
+    </div>
+  </footer>
 

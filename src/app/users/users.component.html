@@ -1,15 +1,36 @@
-<div class="border border-black p-4 h-full bg-002233" *ngIf="loaded">
+<!-- navbar -->
+<nav style="background: rgb(37, 33, 41); background: linear-gradient(90deg, rgba(37, 33, 41, 1) 57%, rgba(25, 52, 93, 1) 98%);" class="p-4">
+  <div class="container mx-auto flex justify-between items-center">
+    <div class="mx-auto md:ml-20 flex items-center"> 
+      <img src="https://static-00.iconduck.com/assets.00/github-icon-2048x1988-jzvzcf2t.png" height="50px" width="50px" alt="Logo" >
+    </div>
+    <div class="hidden font-extrabold text-3xl antialiased font-serif tracking-wide mr-[420px]  lg:flex items-center text-center text-white mx-auto  ">
+      <h1>Github</h1>
+  </div>
+    <div class="relative">
+      <div class="md:space-x-4 md:justify-center sm:flex hidden">
+        <a href="#" class="text-white">Home</a>
+        <a href="#" class="text-white">About</a>
+        <a href="#" class="text-white">Contact</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<hr>
+
+
+<div class="p-4 h-full bg-002233" *ngIf="loaded"  style="background: rgb(37, 33, 41); background: linear-gradient(90deg, rgba(37, 33, 41, 1) 57%, rgba(25, 52, 93, 1) 98%);" >
     <div class="flex">
         <img src="{{details[0].owner.avatar_url}}" alt="User_img" class="rounded-full h-[250px] mt-5 ml-12 shadow-lg shadow-cyan-500/50" >
         <div class="ml-20 mt-9">
-            <p class="font-bold font-sans  text-2xl">
+            <p class="font-bold font-sans  text-2xl text-white">
               <app-profile
               [userId] = "details[0].owner.login"
               ></app-profile>
             </p>
-            <p class="font-bold font-sans text-gray-600 text-xl">Github.com/{{details[0].owner.login}}</p>
+            <p class="font-bold font-sans text-white text-xl">Github.com/{{details[0].owner.login}}</p>
             
-            <p class="mt-1">
+            <p class="mt-1 text-white">
               Bio:-{{details[0].description ? details[0].description : 'No description present here' }}</p>
             <div class="mt-2 flex ">
               <a href="https://github.com/{{details[0].owner.login}}?tab=followers" class="bg-sky-700 text-bold text-white text-center p-1 rounded-sm gap-2" target="_blank">Followers</a> 
@@ -19,23 +40,31 @@
     </div>
 
     <div class="ml-8 mt-7">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 gap-5" [ngStyle]="{'height': !fullHeight ? '400px' : 'auto', 'overflow': 'hidden'}">
-        <ng-container *ngFor="let data of details">
-            <div class="border border-x-gray-700 border-y-slate-800 p-4" (click)="goToRepo(details[0]?.owner?.login, data.name)" style="cursor: pointer;"> 
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 gap-5">
+        <ng-container *ngFor="let data of slicedDetials">
+            <div class="border border-x-white-700 border-y-white-800 p-4" (click)="goToRepo(details[0]?.owner?.login, data.name)" style="cursor: pointer;"> 
               <p class="text-3xl font-bold text-sky-800 font-serif">{{ data.name }}</p>
-              <p class="text-sm font-Consolas">{{ data.description }}</p>
+              <p class="text-sm font-Consolas text-white">{{ data.description }}</p>
               <app-tags [repoName]="data.name" [userId]="details[0].owner.login"></app-tags>
             </div>
         </ng-container>
       </div>
-      <div class="flex justify-center items-center mt-8">
-        <button class="bg-sky-700 text-bold text-white rounded-sm px-2 py-1" (click)="expand()">
-          Show {{fullHeight ? 'Less' : 'More'}}
-        </button>
+      <div class="flex justify-center items-center mt-8 gap-1" >
+        <button class="bg-sky-700 text-bold text-white rounded-sm px-2 py-1" (click)="slicedData(currentPage-1)" [ngClass]="{'hidden': currentPage == 1}" >Previous</button>
+        <button class="border border-sky-700 text-bold text-white rounded-sm px-2 py-1" [ngClass]="{'bg-sky-950': i == currentPage-1 }" *ngFor="let item of [].constructor(total); let i = index" (click)="slicedData(i+1)" >{{i+1}}</button>
+        <button class="bg-sky-700 text-bold text-white rounded-sm px-2 py-1" (click)="slicedData(currentPage+1)" [ngClass]="{'hidden': currentPage == total}" >Next</button>
+
       </div>      
     </div>
 </div>  
-
+<hr>
+<!-- footer -->
+<footer class=" text-white p-4"  style="background: rgb(37, 33, 41); background: linear-gradient(90deg, rgba(37, 33, 41, 1) 57%, rgba(25, 52, 93, 1) 98%);">
+  <div class="container mx-auto text-center">
+    <p>&copy; 2023 Is this Clone of Github</p>
+    <p class="mt-2">Designed with <span class="text-red-500">&#10084;</span> by Shivam kumar yadav</p>
+  </div>
+</footer>
 <div *ngIf="!loaded">
   <div role="status" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center justify-items-center content-center">
     <svg aria-hidden="true" class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
