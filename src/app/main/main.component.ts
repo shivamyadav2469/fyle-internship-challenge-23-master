@@ -11,10 +11,12 @@ export class MainComponent implements  OnInit {
   userId: string = '';
   userName: string = ''; 
   loaded = false;
+  showFamousReposSection: boolean = false;
+  showFamousRepos = false;
   constructor(public api: ApiService, private router: Router, public service: ApiService ){} 
 
   ngOnInit(): void {
-    this.getData();
+    ;
   }
   getData(){
     this.api.getData().subscribe((data)=>{
@@ -25,11 +27,19 @@ export class MainComponent implements  OnInit {
     })
   }
 
+  toggleFamousReposSection() {
+   
+    if (this.showFamousRepos== false) {
+      this.showFamousRepos = true;
+      this.getData();
+      console.log("APi called");
+    }
+    this.showFamousReposSection = !this.showFamousReposSection; 
+}
+  
   repos(userId: string){
     console.log(userId);
     this.router.navigate(['/users'], { queryParams: { userId: userId} })
-
-   
   }
 
   ngAfterViewInit(): void {

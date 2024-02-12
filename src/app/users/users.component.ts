@@ -24,9 +24,7 @@ export class UsersComponent{
       this.uparams = params;
       console.log(this.uparams.params.userId)
       this.userId = this.uparams.params.userId;
-
       this.getRepos(this.userId);
-      
     }); 
   }
 
@@ -44,15 +42,17 @@ export class UsersComponent{
       this.total = Math.ceil(data.length / 6);
       this.details = data
       this.slicedData(1);
+      
     }, (error) => {
-      alert('Something Went Wrong! -- Users')
-      console.log(error);
+      // alert('Something Went Wrong! -- Users')
+      // console.log(error);
+      window.history.go(-1);
+      
     })
     
     setTimeout(()=>{
-      
-      this.loaded = true;
-    }, 3000)
+        this.loaded = true;
+    }, 1000)
 
     console.log('Total ' + this.total);
   }
