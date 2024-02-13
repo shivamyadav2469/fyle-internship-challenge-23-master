@@ -25,8 +25,11 @@ export class UsersComponent{
       console.log(this.uparams.params.userId)
       this.userId = this.uparams.params.userId;
       this.getRepos(this.userId);
+
     }); 
+    
   }
+
 
   goToRepo(userId: string, repoName: string){
     window.open(`https://github.com/${userId}/${repoName}`);
@@ -42,6 +45,7 @@ export class UsersComponent{
       this.total = Math.ceil(data.length / 6);
       this.details = data
       this.slicedData(1);
+      this.loaded = true; 
       
     }, (error) => {
       // alert('Something Went Wrong! -- Users')
@@ -50,9 +54,7 @@ export class UsersComponent{
       
     })
     
-    setTimeout(()=>{
-        this.loaded = true;
-    }, 1000)
+   
 
     console.log('Total ' + this.total);
   }
